@@ -9,9 +9,6 @@
 
 </div>
 
-![teaser](assets/teaser_holdout.png)
-<p align="center"><i>Ground-truth (top) vs. image-conditional generations (bottom) on held-out ABC parts.</i></p>
-
 ---
 
 ## Overview
@@ -93,8 +90,6 @@ python scripts/data/realign.py --in_dir data/tucker_N256_R24_v2 \
 See `configs/data_tucker.yaml` for all parameters, and `docs/Tucker_Reconstruction_Report.docx` for a
 quantitative analysis of Tucker reconstruction fidelity (mean Chamfer ≈ 3.9 voxels).
 
-![tucker](assets/tucker_recon.png)
-
 ### Conditioning features (optional)
 
 ```bash
@@ -154,8 +149,6 @@ python -m diffats.sampling \
 The sampler auto-detects DDPM vs. Stochastic-Interpolant checkpoints (`ckpt['si']`) and reconstructs the
 mesh via `X = G ×₂ U₂ ×₃ U₃` followed by marching cubes.
 
-![uncond](assets/uncond_samples.png)
-
 ---
 
 ## Evaluation
@@ -163,8 +156,6 @@ mesh via `X = G ×₂ U₂ ×₃ U₃` followed by marching cubes.
 ```bash
 python scripts/eval/eval.py     # Chamfer Distance, F-Score@τ, CLIP-Score
 ```
-
-![sota](assets/sota_metrics.png)
 
 ---
 
@@ -177,8 +168,6 @@ End-to-end **text prompt → LLM refinement → 3D shape**. Requires `ANTHROPIC_
 export ANTHROPIC_API_KEY=sk-...
 python scripts/demo/agent_demo_claude.py
 ```
-
-![phase3](assets/phase3_demo.png)
 
 ---
 
