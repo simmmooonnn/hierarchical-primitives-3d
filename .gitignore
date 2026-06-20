@@ -1,0 +1,51 @@
+# ── Data, weights, outputs (never commit — host externally) ──────────────
+data/
+outputs/
+ckpts/
+checkpoints/
+abc_obj/
+renders/
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+*.obj
+*.ply
+*.stl
+*.glb
+*.h5
+
+# Large dataset manifests (regenerate via scripts/data)
+meshes_*.json
+
+# ── Secrets ──────────────────────────────────────────────────────────────
+.env
+*.key
+*_ed25519
+*.pem
+**/secrets*
+
+# ── Python ───────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# ── Logs / experiment trackers ───────────────────────────────────────────
+wandb/
+*.log
+slurm-*.out
+*.err
+
+# ── OS / editor ──────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ── Repo build artifacts ─────────────────────────────────────────────────
+_staging/

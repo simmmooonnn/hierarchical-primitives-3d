@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diffats"
+version = "0.1.0"
+description = "Tucker-latent diffusion transformers for 3D CAD shape generation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "[YOUR NAME]" }]
+keywords = [
+    "3D generation", "diffusion transformer", "stochastic interpolants",
+    "Tucker decomposition", "signed distance field", "CAD",
+]
+dependencies = [
+    "numpy<2.0",
+    "torch>=2.1",
+    "tensorly>=0.8",
+    "trimesh>=4.0",
+    "pysdf>=0.1.9",
+    "scikit-image>=0.22",
+    "scipy>=1.10",
+    "pyrender>=0.1.45",
+    "Pillow>=10.0",
+    "transformers>=4.40",
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+# Agent demo (Phase 3) only — keeps the core install light.
+agent = ["anthropic>=0.40"]
+
+[project.urls]
+Homepage = "https://github.com/[YOUR_USERNAME]/hierarchical-primitives-3d"
+
+# diffats/ is a flat package: models, utils, sampling, render.
+[tool.setuptools]
+packages = ["diffats"]

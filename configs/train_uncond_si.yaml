@@ -1,0 +1,27 @@
+# Unconditional Stochastic-Interpolant training (the "v7" recipe).
+# Mirrors scripts/slurm/submit_train_v7.sh.
+
+shard_dir: data/tucker_N256_R24_v2_medoid
+out_dir: outputs/train_uncond_si
+
+# model
+depth: 12
+hidden_size: 512
+num_heads: 8
+
+# diffusion / interpolant
+target: eps            # eps-prediction
+si: trig              # trig schedule: alpha=cos(pi t/2), beta=sin(pi t/2)  (variance-preserving)
+# sampling is a separate ODE pass (Heun, 50 steps) — see configs/sample_*.yaml
+
+# optimization
+optimizer: adamw
+lr: 1.0e-4
+betas: [0.9, 0.99]
+weight_decay: 0.0
+batch_size: 32
+steps: 625000
+
+# logging
+log_every: 500
+ckpt_every: 25000

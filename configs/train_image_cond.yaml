@@ -1,0 +1,38 @@
+# Image-conditional training (the "v9" recipe): DINOv2-L multi-view -> cross-attention.
+# Mirrors scripts/slurm/submit_train_v9.sh.  Warm-starts from the unconditional SI checkpoint.
+
+shard_dir: data/tucker_N256_R24_v2_medoid
+out_dir: outputs/train_image_cond
+init_from: outputs/train_uncond_si/ckpt_step625000.pt   # warm-start (zero-init cross-attn)
+
+# image condition (DINOv2-L/14)
+cond_dir: outputs/dinov2_embeddings
+cond_dim: 1024
+cond_n_views: 8
+cond_n_tokens: 257       # 256 patch tokens + 1 CLS
+cond_dropout: 0.1        # classifier-free guidance dropout
+
+# model
+depth: 12
+hidden_size: 512
+num_heads: 8
+qk_norm: true            # SD3/TRELLIS attention stabilizer (low-noise pathology fix)
+
+# diffusion / interpolant
+target: eps
+si: trig
+t_sampling: uniform
+t_clamp: 0.01            # avoid the t->0 low-noise pathology
+
+# optimization
+optimizer: lion
+lr: 3.0e-5
+betas: [0.95, 0.98]
+weight_decay: 0.0
+ema_decay: 0.9999
+grad_clip: 1.0
+batch_size: 32
+steps: 200000
+
+log_every: 500
+ckpt_every: 5000

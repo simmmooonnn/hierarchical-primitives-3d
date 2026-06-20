@@ -1,0 +1,29 @@
+# DiffATs — core dependencies
+# Install:  pip install -r requirements.txt
+# Tested with Python 3.10/3.11, CUDA 12.x (A100/H100).
+
+# --- deep learning ---
+torch>=2.1            # install the CUDA build matching your driver
+numpy<2.0             # some compiled deps (pysdf, tensorly) prefer numpy 1.x
+
+# --- tensor decomposition ---
+tensorly>=0.8
+
+# --- geometry / SDF / meshing ---
+trimesh>=4.0
+pysdf>=0.1.9          # signed-distance queries (inside-positive; we flip sign)
+scikit-image>=0.22    # marching_cubes
+scipy>=1.10           # cKDTree for Chamfer/Hausdorff
+
+# --- rendering (multi-view conditioning) ---
+pyrender>=0.1.45      # EGL/OSMesa headless rendering
+Pillow>=10.0
+
+# --- conditioning encoders ---
+transformers>=4.40    # DINOv2-L (image), CLIP-L (text)
+
+# --- agent demo (optional; Phase 3 only) ---
+anthropic>=0.40       # reads ANTHROPIC_API_KEY from env — never hardcode
+
+# --- misc ---
+tqdm>=4.65

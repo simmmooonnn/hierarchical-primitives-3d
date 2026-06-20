@@ -1,0 +1,20 @@
+#!/bin/bash
+#SBATCH -A eng260004-ai
+#SBATCH -p ai
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=64G
+#SBATCH -t 04:00:00
+#SBATCH -J caption_batch
+#SBATCH -o /anvil/scratch/x-zsu7/diffats_gpu/outputs/captions/slurm-%j.out
+
+set -e
+module load conda/2026.03
+source activate $SCRATCH/envs/diffats
+cd $SCRATCH/diffats_gpu
+
+# Batch caption all 10k training meshes + 16 hold-out meshes via Qwen2-VL-7B.
+# Resumable: skips meshes whose mesh_id is already in captions.json.
+python -u scripts/conditioning/caption.py

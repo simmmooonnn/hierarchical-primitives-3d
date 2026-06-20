@@ -1,0 +1,24 @@
+# Data preprocessing: ABC mesh -> TSDF -> Tucker latents -> medoid realign.
+# Mirrors scripts/slurm/submit_tucker_v2.sh and scripts/slurm/submit_realign_v2.sh.
+
+dataset_filter:
+  obj_dir: abc_obj/obj
+  out_json: meshes_v2_filtered.json
+  inside_frac_min: 0.02      # discard near-empty / near-solid meshes
+  inside_frac_max: 0.25
+  grid_N: 32                 # coarse grid used only for the inside-fraction test
+  n_workers: 60
+
+tucker:
+  mesh_list: meshes_v2_filtered_10k.json
+  out_dir: data/tucker_N256_R24_v2
+  N: 256                     # TSDF voxel resolution
+  rank: 24                   # Tucker rank R (per mode)
+  mu_factor: 2.0             # TSDF truncation = mu_factor * voxel_size
+  shard_size: 100
+  n_workers: 60
+  anchor_path: data/tucker_N256_R24/ref_anchor.pt   # OP-alignment anchor
+
+realign:
+  in_dir: data/tucker_N256_R24_v2
+  out_dir: data/tucker_N256_R24_v2_medoid          # medoid orthogonal-Procrustes realign

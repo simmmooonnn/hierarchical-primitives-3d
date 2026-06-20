@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the following."
+title: "Hierarchical Primitives for 3D Shape Generation"
+authors:
+  - family-names: "[YOUR LAST NAME]"
+    given-names: "[YOUR FIRST NAME]"
+    affiliation: "University of Michigan"
+date-released: "2026-06-19"
+version: "0.1.0"
+url: "https://github.com/[YOUR_USERNAME]/hierarchical-primitives-3d"
+keywords:
+  - 3D generation
+  - diffusion transformer
+  - stochastic interpolants
+  - Tucker decomposition
+  - signed distance field
+  - CAD

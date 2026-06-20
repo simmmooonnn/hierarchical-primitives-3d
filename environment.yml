@@ -1,0 +1,24 @@
+name: diffats
+# Conda environment for DiffATs.
+#   conda env create -f environment.yml
+#   conda activate diffats
+# Then install the CUDA torch build matching your driver, e.g.:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy<2.0
+  - scipy>=1.10
+  - scikit-image>=0.22
+  - pip
+  - pip:
+      - torch>=2.1
+      - tensorly>=0.8
+      - trimesh>=4.0
+      - pysdf>=0.1.9
+      - pyrender>=0.1.45
+      - Pillow>=10.0
+      - transformers>=4.40
+      - anthropic>=0.40
+      - tqdm>=4.65
