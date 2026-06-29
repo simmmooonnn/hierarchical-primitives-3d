@@ -19,16 +19,6 @@ This is a follow-up to [ADAPTIVE_RANK_REPORT.md](ADAPTIVE_RANK_REPORT.md) and [A
 
 ---
 
-## Background: the two questions this report answers
-
-**1. Is the SDF truncation threshold doing anything to the rank methods?**
-No. `truncate_sdf(sdf, mu)` ([diffats/utils.py:55](diffats/utils.py#L55)) clips the SDF to `[-mu, mu]` *before* Tucker decomposition runs, where `mu = mu_factor * voxel_size` (`mu_factor=2.0` everywhere in this codebase — not a literal constant like 0.05). It changes what values the TSDF tensor holds; it has no interaction with how a rank is subsequently chosen. The two pipeline stages are independent.
-
-**2. What fixed rank should be the baseline, and does anything beat it?**
-Every artifact in this repo (`README.md`, `configs/data_tucker.yaml`, `scripts/slurm/submit_tucker_v2.sh`, `docs/Tucker_Reconstruction_Report.docx`) documents **R=24** as the production value. R=44 (recalled from memory going into this benchmark) appears nowhere. Both were tested here directly on real data to settle it — see results below.
-
----
-
 ## Methodology
 
 ### Real data
